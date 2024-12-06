@@ -1,0 +1,45 @@
+:root {
+  --cursor-1: url("cursor.cur"), pointer;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.hiddenvis {
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+html {
+  background-color: #454242;
+  padding: 0;
+  margin: 0;
+  user-select: none;
+  cursor: var(--cursor-1);
+}
+
+#Stats {
+  left: 50px;
+}
+
+#ClickBox {
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  top: 100px;
+  left: 125px;
+  display: flex;
+}
+
+#Ad, #Blocked {
+  width: 500px;
+  height: 500px;
+  justify-content: center;
+  align-items: center;
+}
+
+#debug {
+  width: 1px;
+}
