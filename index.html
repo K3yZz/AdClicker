@@ -3,21 +3,69 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hello world!</title>
+    <title>AD Block Clicker</title>
     <link rel="stylesheet" href="/style.css" />
     <script src="/script.js" defer></script>
   </head>
   
   <body>
+    <div id="TopLeftLog">
+      <p id="Version">V0.1.0</p> <!--Version-Major.Minor.Patches-->
+      <p id="Changes">Changes:<br>-Release<br></p>
+      <p id="Credits">Made by Keys<br>Tested by [person]</p>
+    </div>
     <div id="Stats">
-      <p>Money: <span id="Money_Display">0</span></p>
-      <p>Power: <span id="Power_Display">0</span></p>
-      <p>Autoblockers: <span id="Autoblocks_Display">0</span></p>
+      <p>Money: $<span id="Money_Display">0</span></p>
+      <p>Power: <span id="Power_Display">1</span>/click</p>
+      <p>Autoblockers: <span id="Autoblocks_Display">0</span>/s</p>
     </div>
     <div id="ClickBox">
-      <img id="Ad" src="a" onclick="adclicked()">
-      <img id="Blocked" src="Blocked.png" class="hidden">
+      <img id="Ad" src="./Images/ad-1.png" onclick="adclicked()">
+      <img id="Blocked" src="./Images/Blocked.png" class="hidden">
     </div>
-    <div id="Upgrades"></div>
+    <div id="UpgradesBox">
+      <div class="Upgrade">
+        <p class="UpgradeName">idk1</p>
+        <p class="UpgradePrice">25</p>
+        <p class="UpgradeDiscription">+1/click</p>
+        <button class="UpgradePurchaseButton" onclick="purchaseupgrade(1)">Purchase</button>
+      </div>
+      <div class="Upgrade">
+        <p class="UpgradeName">idk2</p>
+        <p class="UpgradePrice">150</p>
+        <p class="UpgradeDiscription">+1/s</p>
+        <button class="UpgradePurchaseButton" onclick="purchaseupgrade(2)">Purchase</button>
+      </div>
+      <div class="Upgrade">
+        <p class="UpgradeName">idk3</p>
+        <p class="UpgradePrice">250</p>
+        <p class="UpgradeDiscription">+10/click</p>
+        <button class="UpgradePurchaseButton" onclick="purchaseupgrade(3)">Purchase</button>
+      </div>
+      <div class="Upgrade">
+        <p class="UpgradeName">idk4</p>
+        <p class="UpgradePrice">600</p>
+        <p class="UpgradeDiscription">+10/s</p>
+        <button class="UpgradePurchaseButton" onclick="purchaseupgrade(4)">Purchase</button>
+      </div>
+      <div class="Upgrade">
+        <p class="UpgradeName">idk5</p>
+        <p class="UpgradePrice">1,000</p>
+        <p class="UpgradeDiscription">+75/click</p>
+        <button class="UpgradePurchaseButton" onclick="purchaseupgrade(5)">Purchase</button>
+      </div>
+      <div class="Upgrade">
+        <p class="UpgradeName">idk6</p>
+        <p class="UpgradePrice">10,000</p>
+        <p class="UpgradeDiscription">+50/s</p>
+        <button class="UpgradePurchaseButton" onclick="purchaseupgrade(6)">Purchase</button>
+      </div>
+      <div class="Upgrade">
+        <p class="UpgradeName">idk7</p>
+        <p class="UpgradePrice">100,000</p>
+        <p class="UpgradeDiscription">+150/click</p>
+        <button class="UpgradePurchaseButton" onclick="purchaseupgrade(7)">Purchase</button>
+      </div>
+    </div>
   </body>
 </html>

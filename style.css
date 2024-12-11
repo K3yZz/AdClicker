@@ -1,5 +1,10 @@
 :root {
-  --cursor-1: url("cursor.cur"), pointer;
+  --cursor-1: url("/Cursors/cursor.cur"), pointer;
+}
+
+@font-face {
+  font-family: "MotleyForces";
+  src: url("./Fonts/MotleyForces.ttf") format("truetype");
 }
 
 .hidden {
@@ -18,10 +23,17 @@ html {
   margin: 0;
   user-select: none;
   cursor: var(--cursor-1);
+  font-family: "MotleyForces";
+}
+
+#TopLeftLog {
+  overflow: hidden;
+  position: absolute;
 }
 
 #Stats {
-  left: 50px;
+  position: absolute;
+  left: 200px;
 }
 
 #ClickBox {
@@ -38,8 +50,58 @@ html {
   height: 500px;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
-#debug {
-  width: 1px;
+#Blocked {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+#UpgradesBox {
+  position: absolute;
+  left: 850px;
+  top: 25px;
+  width: 500px;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  overflow-y: auto;
+  flex-direction: column;
+  background-color: red;
+}
+
+.Upgrade {
+  width: 450px;
+  height: 150px;
+  background-color: blue;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 60px;
+  overflow: hidden;
+}
+
+.UpgradeName {
+  margin-left: 10px;
+  font-size: 20px;
+} 
+
+.UpgradePrice {
+  font-size: 20px;
+}
+
+.UpgradeDiscription {
+  font-size: 20px;
+}
+
+.UpgradePurchaseButton {
+  margin-left: auto;
+  cursor: var(--cursor-1);
 }

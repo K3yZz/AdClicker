@@ -2,11 +2,21 @@
 var Stats = {
   money: 0,
   power: 1,
-  autoclicker: 0
+  autoclicker: 0,
 };
 
-//chosen cursor
-var cursor = 1;
+//to add upgrades follow the instructions below
+//1. add another upgrade div in HTML
+//2. create another ID array below
+var Upgrades = [
+  {ID: 1, Name: "Upgrade1", Price: 25, Effect: 1, Type: "power"},
+  {ID: 2, Name: "Upgrade2", Price: 150, Effect: 1, Type: "auto"},
+  {ID: 3, Name: "Upgrade3", Price: 250, Effect: 10, Type: "power"},
+  {ID: 4, Name: "Upgrade4", Price: 600, Effect: 10, Type: "auto"},
+  {ID: 5, Name: "Upgrade5", Price: 1000, Effect: 75, Type: "power"},
+  {ID: 6, Name: "Upgrade6", Price: 10000, Effect: 50, Type: "auto"},
+  {ID: 7, Name: "Upgrade7", Price: 100000, Effect: 150, Type: "power"}
+]
 
 //Rewards from clicking ad
 function adclicked() {
@@ -14,6 +24,35 @@ function adclicked() {
   updatedisplay("money");
   updatedisplay("ad");
   updatedisplay("blocked");
+}
+
+function autoclick() {
+  setInterval(() => {
+    Stats.money += Stats.autoclicker;
+    updatedisplay("money");
+  }, 1000);
+}
+
+//Upgrade purchases
+function purchaseupgrade(upgradenumber) {
+
+  const upgrade = Upgrades.find(u => u.ID === upgradenumber);
+
+  if (upgrade) {
+    if (Stats.money >= upgrade.Price) {
+      Stats.money -= upgrade.Price;
+      if (upgrade.Type == "power") {
+        Stats.power += upgrade.Effect;
+      } else if (upgrade.Type == "auto") {
+        autoclick();
+        Stats.autoclicker += upgrade.Effect;
+      }
+    }
+  }
+
+  updatedisplay("money");
+  updatedisplay("power");
+  updatedisplay("autoclicker");
 }
 
 //Change user stat displays
@@ -36,14 +75,14 @@ function updatedisplay(display) {
       
       //ad display
     case "ad":
-      var ad_display = Math.floor(Math.random() * 3) + 1;
+      var ad_display = Math.floor(Math.random() * 2) + 1; //change later for more ads
       
       switch (ad_display) {
         case 1:
-          document.getElementById("Ad").src = "ad-1.png";
+          document.getElementById("Ad").src = "./Images/ad-1.png";
           break;
         case 2:
-          document.getElementById("Ad").src = "ad-2.png";
+          document.getElementById("Ad").src = "./Images/ad-2.png";
           break;
         case 3:
           break;
@@ -52,14 +91,19 @@ function updatedisplay(display) {
       //blocked display 
     case "blocked":
       document.getElementById("Blocked").classList.remove("hidden");
+      document.getElementById("Ad").style.opacity = 0.5;
       setTimeout(() => {
         document.getElementById("Blocked").classList.add("hidden");
+        document.getElementById("Ad").style.opacity = 1;
       }, 500);
       break;
       
       //cursor display
     case "cursor":
-      
+
+      //chosen cursor
+      var cursor = 1; 
+
       switch (cursor) {
         case 1:
           document.documentElement.style.cursor = "var(--cursor-1)";
