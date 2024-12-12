@@ -33,6 +33,10 @@ html {
   position: absolute;
 }
 
+#ChangeLog {
+  list-style-type: "-";
+}
+
 #Stats {
   position: absolute;
   left: 200px;
@@ -43,7 +47,7 @@ html {
   height: 500px;
   position: absolute;
   top: 100px;
-  left: 125px;
+  left: 175px;
   display: flex;
 }
 
@@ -73,37 +77,30 @@ html {
   align-items: center;
   overflow-y: auto;
   flex-direction: column;
-  background-color: red;
+  background-color: rgb(47, 43, 43);
 }
 
 .Upgrade {
   width: 450px;
   height: 150px;
-  background-color: blue;
-  margin-bottom: 5px;
-  margin-top: 5px;
+  background-color: rgb(24, 24, 25);
+  margin-bottom: 10px;
+  margin-top: 10px;
   flex-shrink: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  gap: 55px;
   overflow: hidden;
-}
-
-.UpgradeName {
-  margin-left: 10px;
   font-size: 20px;
-} 
-
-.UpgradePrice {
-  font-size: 20px;
-}
-
-.UpgradeDiscription {
-  font-size: 20px;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
 }
 
 .UpgradePurchaseButton {
-  margin-left: auto;
   cursor: var(--cursor-1);
+  grid-column: 5 / 6;
+  grid-row: 1 / -1;
+}
+
+.UpgradeDiscription {
+  grid-column: 1 / 1;
 }
