@@ -1,3 +1,8 @@
+//Warning:
+//my code suck
+//so gl
+
+
 //User Stats
 var Stats = {
   money: 0,
@@ -75,16 +80,20 @@ function updatedisplay(display) {
       
       //ad display
     case "ad":
-      var ad_display = Math.floor(Math.random() * 2) + 1; //change later for more ads
-      
+      var ad_display = Math.floor(Math.random() * 4) + 1; //change the # in "Math.random() * #" for how many possible ads
+      var Ad = document.getElementById("Ad");
       switch (ad_display) {
         case 1:
-          document.getElementById("Ad").src = "./Images/ad-1.png";
+          Ad.src = "./Images/ad-1.png";
           break;
         case 2:
-          document.getElementById("Ad").src = "./Images/ad-2.png";
+          Ad.src = "./Images/ad-2.png";
           break;
         case 3:
+          Ad.src = "./Images/ad-3.png";
+          break;
+        case 4:
+          Ad.src = "./Images/ad-4.png";
           break;
       } break;
       
