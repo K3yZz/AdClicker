@@ -1,5 +1,6 @@
 :root {
   --cursor-1: url("/Cursors/cursor.cur"), pointer;
+  --cursor-2: url("/Cursors/cursor-2.cur"), pointer;
 }
 
 @font-face {
@@ -22,10 +23,13 @@ html {
   padding: 0;
   margin: 0;
   user-select: none;
-  cursor: var(--cursor-1);
   font-family: "MotleyForces";
   color: white;
   -webkit-text-stroke: 1px black;
+}
+
+html, button {
+  cursor: var(--cursor-1);
 }
 
 #TopLeftLog {
@@ -39,7 +43,7 @@ html {
 
 #Stats {
   position: absolute;
-  left: 200px;
+  left: 400px;
 }
 
 #ClickBox {
@@ -91,16 +95,21 @@ html {
   font-size: 20px;
   display: grid;
   grid-template-rows: repeat(5, 1fr);
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(7, 1fr);
 }
 
 .UpgradePurchaseButton {
-  cursor: var(--cursor-1);
-  grid-column: 5 / 6;
-  grid-row: 1 / -1;
+  grid-area: 1 / 7 / -1 / 8;
+}
+
+.UpgradeName {
+  grid-area: 1 / 2 / 2 / 4;
+}
+
+.UpgradePrice {
+  grid-area: 1 / 5 / 2 / 6;
 }
 
 .UpgradeDiscription {
-  grid-column: 1 / 1;
+  grid-area: 4 / 2 / 5 / 3;
 }

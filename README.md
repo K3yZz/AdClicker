@@ -1,13 +1,9 @@
 # Description
 
-Idea --> ad blocker clicker game
+Cool little clicker game about blocking ads
 
-## Table of Contents
+## Todo
 
-← `README.md`: ...
-
-← `index.html`: ...
-
-← `style.css`: ...
-
-← `script.js`: ...
+- Make changelog a button to take up less space
+- Get someone to test
+- What version am i on even

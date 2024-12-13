@@ -80,7 +80,7 @@ function updatedisplay(display) {
       
       //ad display
     case "ad":
-      var ad_display = Math.floor(Math.random() * 4) + 1; //change the # in "Math.random() * #" for how many possible ads
+      var ad_display = Math.floor(Math.random() * 6) + 1; //change the # in "Math.random() * #" for how many possible ads
       var Ad = document.getElementById("Ad");
       switch (ad_display) {
         case 1:
@@ -94,6 +94,15 @@ function updatedisplay(display) {
           break;
         case 4:
           Ad.src = "./Images/ad-4.png";
+          break;
+        case 5:
+          Ad.src = "./Images/ad-5.png";
+          break;
+        case 6:
+          var rare_ad = Math.floor(Math.random() * 10) + 1; //if you get this image then you beat the odds
+          if (rare_ad == 7) { //there is a 1.67% chance to get this ad lol
+          Ad.src = "./Images/Capybara.png";
+          }
           break;
       } break;
       
@@ -111,9 +120,9 @@ function updatedisplay(display) {
     case "cursor":
 
       //chosen cursor
-      var cursor = 1; 
+      var selectedcursor = 1; 
 
-      switch (cursor) {
+      switch (selectedcursor) {
         case 1:
           document.documentElement.style.cursor = "var(--cursor-1)";
           break;
