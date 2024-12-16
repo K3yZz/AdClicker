@@ -35,15 +35,13 @@ html, button {
 #TopLeftLog {
   overflow: hidden;
   position: absolute;
-}
-
-#ChangeLog {
-  list-style-type: "-";
+  font-size: 20px;
 }
 
 #Stats {
+  font-size: 20px;
   position: absolute;
-  left: 400px;
+  top: 200px;
 }
 
 #ClickBox {
@@ -51,7 +49,7 @@ html, button {
   height: 500px;
   position: absolute;
   top: 100px;
-  left: 175px;
+  left: 300px;
   display: flex;
 }
 
@@ -103,11 +101,11 @@ html, button {
 }
 
 .UpgradeName {
-  grid-area: 1 / 2 / 2 / 4;
+  grid-area: 1 / 2 / 2 / 5;
 }
 
 .UpgradePrice {
-  grid-area: 1 / 5 / 2 / 6;
+  grid-area: 4 / 4 / 4 / 4;
 }
 
 .UpgradeDiscription {

@@ -8,6 +8,27 @@ var Stats = {
   money: 0,
   power: 1,
   autoclicker: 0,
+  multiplier: 1
+};
+
+
+
+//on load stuff for saving VVV
+setInterval(() => {
+  localStorage.setItem("Stats", JSON.stringify(Stats));
+}, 1000);
+
+window.onload = function () {
+  const savedstats = JSON.parse(localStorage.getItem("Stats"));
+  Stats.money = savedstats.money;
+  Stats.power = savedstats.power;
+  Stats.autoclicker = savedstats.autoclicker;
+  Stats.multiplier = savedstats.multiplier;
+  updatedisplay("money");
+  updatedisplay("power");
+  updatedisplay("autoclicker");
+  updatedisplay("multiplier");
+  autoclick();
 };
 
 //to add upgrades follow the instructions below
@@ -17,15 +38,16 @@ var Upgrades = [
   {ID: 1, Name: "Upgrade1", Price: 25, Effect: 1, Type: "power"},
   {ID: 2, Name: "Upgrade2", Price: 150, Effect: 1, Type: "auto"},
   {ID: 3, Name: "Upgrade3", Price: 250, Effect: 10, Type: "power"},
-  {ID: 4, Name: "Upgrade4", Price: 600, Effect: 10, Type: "auto"},
-  {ID: 5, Name: "Upgrade5", Price: 1000, Effect: 75, Type: "power"},
-  {ID: 6, Name: "Upgrade6", Price: 10000, Effect: 50, Type: "auto"},
-  {ID: 7, Name: "Upgrade7", Price: 100000, Effect: 150, Type: "power"}
+  {ID: 4, Name: "Upgrade4", Price: 2000, Effect: 10, Type: "auto"},
+  {ID: 5, Name: "Upgrade5", Price: 2500, Effect: 75, Type: "power"},
+  {ID: 6, Name: "Upgrade6", Price: 25000, Effect: 50, Type: "auto"},
+  {ID: 7, Name: "Upgrade7", Price: 100000, Effect: 150, Type: "power"},
+  {ID: 8, Name: "Prestige1", Price: 1000000, Effect: 0, Type: "prestige"}
 ]
 
 //Rewards from clicking ad
 function adclicked() {
-  Stats.money += Stats.power;
+  Stats.money += Stats.power * Stats.multiplier;
   updatedisplay("money");
   updatedisplay("ad");
   updatedisplay("blocked");
@@ -33,7 +55,7 @@ function adclicked() {
 
 function autoclick() {
   setInterval(() => {
-    Stats.money += Stats.autoclicker;
+    Stats.money += Stats.autoclicker * Stats.multiplier;
     updatedisplay("money");
   }, 1000);
 }
@@ -49,8 +71,16 @@ function purchaseupgrade(upgradenumber) {
       if (upgrade.Type == "power") {
         Stats.power += upgrade.Effect;
       } else if (upgrade.Type == "auto") {
-        autoclick();
         Stats.autoclicker += upgrade.Effect;
+      } else if (upgrade.Type == "prestige") {
+        switch(upgrade.Name) {
+          case "Prestige1":
+              Stats.money = 0;
+              Stats.autoclicker = 0;
+              Stats.power = 1;
+              Stats.multiplier += 0.5;
+            break;
+        }
       }
     }
   }
@@ -58,6 +88,7 @@ function purchaseupgrade(upgradenumber) {
   updatedisplay("money");
   updatedisplay("power");
   updatedisplay("autoclicker");
+  updatedisplay("multiplier");
 }
 
 //Change user stat displays
@@ -77,7 +108,12 @@ function updatedisplay(display) {
     case "autoclicker":
       document.getElementById("Autoblocks_Display").innerText = Stats.autoclicker.toLocaleString();
       break;
-      
+
+      //multiplier display
+    case "multiplier":
+        document.getElementById("Multiplier_Display").innerText = Stats.multiplier.toLocaleString();
+      break;
+
       //ad display
     case "ad":
       var ad_display = Math.floor(Math.random() * 6) + 1; //change the # in "Math.random() * #" for how many possible ads
@@ -133,3 +169,4 @@ function updatedisplay(display) {
       }break;
   }
 }
+
