@@ -47,7 +47,7 @@ var Upgrades = [
 
 //Rewards from clicking ad
 function adclicked() {
-  Stats.money += Stats.power * Stats.multiplier;
+  Stats.money += Stats.power;
   updatedisplay("money");
   updatedisplay("ad");
   updatedisplay("blocked");
@@ -55,7 +55,7 @@ function adclicked() {
 
 function autoclick() {
   setInterval(() => {
-    Stats.money += Stats.autoclicker * Stats.multiplier;
+    Stats.money += Stats.autoclicker;
     updatedisplay("money");
   }, 1000);
 }
@@ -69,16 +69,16 @@ function purchaseupgrade(upgradenumber) {
     if (Stats.money >= upgrade.Price) {
       Stats.money -= upgrade.Price;
       if (upgrade.Type == "power") {
-        Stats.power += upgrade.Effect;
+        Stats.power += upgrade.Effect * Stats.multiplier;
       } else if (upgrade.Type == "auto") {
-        Stats.autoclicker += upgrade.Effect;
+        Stats.autoclicker += upgrade.Effect * Stats.multiplier;
       } else if (upgrade.Type == "prestige") {
         switch(upgrade.Name) {
           case "Prestige1":
               Stats.money = 0;
               Stats.autoclicker = 0;
               Stats.power = 1;
-              Stats.multiplier += 0.5;
+              Stats.multiplier += 1;
             break;
         }
       }
@@ -135,9 +135,10 @@ function updatedisplay(display) {
           Ad.src = "./Images/ad-5.png";
           break;
         case 6:
-          var rare_ad = Math.floor(Math.random() * 10) + 1; //if you get this image then you beat the odds
+          var rare_ad = Math.floor(Math.random() * 20) + 1; //if you get this image then you beat the odds
           if (rare_ad == 7) { //there is a 1.67% chance to get this ad lol
           Ad.src = "./Images/Capybara.png";
+          Stats.money += Math.round(Stats.money / 10);
           }
           break;
       } break;
@@ -173,9 +174,47 @@ function updatedisplay(display) {
   }
 }
 
-function  popupwindowdisplay(selectedpopup) {
-  switch (selectedpopup) {
-    case 1:
-      break;
+var Popupwindowtext = [
+  {ID: 1, 
+  Text1: "V1.0.0",
+  Text2: "Ad Block Clicker",
+  Text3: "Welcome to my game its in beta rn so expect bugs, progress loss, etc. Close the this window with the X have fun!",
+  Text4: "Decreased capybara chance; 1.67% -> 0.83%<br>Increased prestige multiplier; +0.5 - > +1<br>Capybara gives 10% of player money<br>Added settings"},
+  {ID: 2, 
+    Text1: "V1.0.0",
+    Text2: "Settings",
+    Text3: "Settings stuff",
+    Text4: { label: "Reset", onclick: "resetprogress()" },
+  },
+]
+
+function popupwindowdisplay(selectedpopup) { //yes i took this from chatgpt shhhh it was to complex
+  document.getElementById("PopupWindow").classList.remove("hidden");
+  const popupData = Popupwindowtext.find((popup) => popup.ID === selectedpopup);
+  if (popupData) {
+    document.getElementById("PopupWindow-innertext-1").textContent = popupData.Text1;
+    document.getElementById("PopupWindow-innertext-2").textContent = popupData.Text2;
+    document.getElementById("PopupWindow-innertext-3").textContent = popupData.Text3;
+    
+    const text4Container = document.getElementById("PopupWindow-innertext-4");
+
+    if (typeof popupData.Text4 === "string") {
+      text4Container.innerHTML = popupData.Text4;
+    } else if (typeof popupData.Text4 === "object" && popupData.Text4.label && popupData.Text4.onclick) {
+      text4Container.innerHTML = ""; 
+      const button = document.createElement("button");
+      button.textContent = popupData.Text4.label;
+      button.setAttribute("onclick", popupData.Text4.onclick);
+      text4Container.appendChild(button);
+    }
+  } 
+} 
+
+function resetprogress() {
+    if(confirm("Are you sure?")) {
+      Stats.money = 0;
+      Stats.autoclicker = 0;
+      Stats.power = 1;
+      Stats.multiplier = 1;
+    } else alert("ok!");
   }
-}

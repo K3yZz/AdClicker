@@ -4,7 +4,16 @@ Cool little clicker game about blocking ads
 
 ## Todo
 
-- I have no idea
+- Debug
 
 ## Version
-- 0.1.5 probably?
+
+- 1.1.0
+
+### Changes
+
+- Release + Small additions
+- Decreased capybara chance; 1.67% -> 0.83%
+- Increased prestige multiplier; +0.5 - > +1
+- Capybara gives 10% of player Money
+- Added settings
