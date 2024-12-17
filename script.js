@@ -167,6 +167,15 @@ function updatedisplay(display) {
           break;
           
       }break;
+    case "popupwindow":
+      document.getElementById("PopupWindow").classList.add("hidden");
+      break;
   }
 }
 
+function  popupwindowdisplay(selectedpopup) {
+  switch (selectedpopup) {
+    case 1:
+      break;
+  }
+}

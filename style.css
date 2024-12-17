@@ -32,6 +32,60 @@ html, button {
   cursor: var(--cursor-1);
 }
 
+#PopupWindow {
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background-color: rgb(47, 43, 43);
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+}
+
+#PopupWindow-topline {
+  grid-area: 2 / 1 / 3 / 11;
+  background-color: black;
+  height: 5px;
+}
+
+#PopupWindow-X {
+  grid-area: 1 / 9 / 1 / 10;
+  height: 75px;
+  background-color: transparent;
+  border: none;
+}
+
+#PopupWindow-fullscreen {
+  grid-area: 1 / 8 / 1 / 9;
+}
+
+#PopupWindow-minimize {
+  grid-area: 1 / 7 / 1 / 8;
+}
+
+#PopupWindow-X-png, #PopupWindow-fullscreen-png, #PopupWindow-minimize-png {
+  height: 100px;
+  width: 100px;
+}
+
+#PopupWindow-innertext-1 {
+  grid-area: 2 / 1 / 3 / 8;
+}
+#PopupWindow-innertext-2 {
+  grid-area: 2 / 6 / 3 / 10;
+}
+#PopupWindow-innertext-3 {
+  grid-area: 3 / 2 / 4 / 10;
+}
+#PopupWindow-innertext-4 {
+  grid-area: 4 / 2 / 5 / 10;
+}
+
 #TopLeftLog {
   overflow: hidden;
   position: absolute;

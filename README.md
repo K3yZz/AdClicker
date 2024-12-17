@@ -4,6 +4,7 @@ Cool little clicker game about blocking ads
 
 ## Todo
 
-- Make changelog a button to take up less space
-- Get someone to test
-- What version am i on even
+- I have no idea
+
+## Version
+- 0.1.5 probably?
