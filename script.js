@@ -30,6 +30,7 @@ window.onload = function () {
   updatedisplay("power");
   updatedisplay("autoclicker");
   updatedisplay("multiplier");
+  popupwindowdisplay(1);
   autoclick();
 };
 
@@ -38,18 +39,19 @@ window.onload = function () {
 //2. create another ID array below
 var Upgrades = [
   {ID: 1, Name: "Upgrade1", Price: 25, Effect: 1, Type: "power"},
-  {ID: 2, Name: "Upgrade2", Price: 150, Effect: 1, Type: "auto"},
-  {ID: 3, Name: "Upgrade3", Price: 250, Effect: 10, Type: "power"},
-  {ID: 4, Name: "Upgrade4", Price: 2000, Effect: 10, Type: "auto"},
-  {ID: 5, Name: "Upgrade5", Price: 2500, Effect: 75, Type: "power"},
-  {ID: 6, Name: "Upgrade6", Price: 25000, Effect: 50, Type: "auto"},
-  {ID: 7, Name: "Upgrade7", Price: 100000, Effect: 150, Type: "power"},
-  {ID: 8, Name: "Prestige1", Price: 1000000, Effect: 0, Type: "prestige"}
+  {ID: 2, Name: "Upgrade2", Price: 50, Effect: 1, Type: "auto"},
+  {ID: 3, Name: "Upgrade3", Price: 125, Effect: 10, Type: "power"},
+  {ID: 4, Name: "Upgrade4", Price: 250, Effect: 10, Type: "auto"},
+  {ID: 5, Name: "Upgrade5", Price: 625, Effect: 75, Type: "power"},
+  {ID: 6, Name: "Upgrade6", Price: 1250, Effect: 50, Type: "auto"},
+  {ID: 7, Name: "Upgrade7", Price: 3125, Effect: 150, Type: "power"},
+  {ID: 8, Name: "Upgrade8", Price: 6250, Effect: 150, Type: "auto"},
+  {ID: 9, Name: "Prestige1", Price: 1000000, Effect: 0, Type: "prestige"}
 ]
 
 //Rewards from clicking ad
 function adclicked() {
-  Stats.money += Stats.power;
+  Stats.money += Stats.power * Stats.multiplier;
   updatedisplay("money");
   updatedisplay("ad");
   updatedisplay("blocked");
@@ -159,6 +161,7 @@ function updatedisplay(display) {
       //cursor display
     case "cursor":
 
+
       //chosen cursor
       var selectedcursor = 1; 
 
@@ -171,6 +174,8 @@ function updatedisplay(display) {
           break;
           
       }break;
+    
+      //Popupwindow display
     case "popupwindow":
       document.getElementById("PopupWindow").classList.add("hidden");
       break;
@@ -179,22 +184,22 @@ function updatedisplay(display) {
 
 var Popupwindowtext = [
   {ID: 1, 
-  Text1: "V1.1.1",
+  Text1: "V1.1.2",
   Text2: "Ad Block Clicker",
-  Text3: "Welcome to my game its in beta rn so expect bugs, progress loss, etc. Close the this window with the X have fun!",
-  Text4: "Decreased capybara chance; 1.67% -> 0.83%<br>Increased prestige multiplier; +0.5 - > +1<br>Capybara gives 10% of player money<br>Added settings"},
+  Text3: "Bugs, progress loss, etc. are possible. Close the this window with the X. Current start to 1,000,000: 2 minutes",
+  Text4: "Changelog: Patched Multiplier bug, new upgrade, changed upgrade prices."},
   {ID: 2, 
-    Text1: "V1.1.1",
+    Text1: "V1.1.2",
     Text2: "Settings",
     Text3: "Settings stuff",
     Text4: { label: "Reset", onclick: "resetprogress()" },
   },
   {ID: 3,
-    Text1: "V1.1.1",
+    Text1: "V1.1.2",
     Text2: "Debug Hacks",
     Text3: { label: "+$1,000,000", onclick: "debug(1)" },
     Text4: { label: "Capabara 0.83% -> 100% chance, Capabara bonus 10% -> 110%", onclick: "debug(2)"},
-    Text5: { label: "Multiplier -> 20x", onclick: "debug(3)"}
+    Text5: { label: "Multiplier +20x", onclick: "debug(3)"}
   }
 ]
 
@@ -251,7 +256,7 @@ function debug(debugtype) {
       capybarabonus_percent = 2.10;
       break;
     case 3:
-      Stats.multiplier = 20;
+      Stats.multiplier += 20;
       updatedisplay("multiplier");
   }
 }
