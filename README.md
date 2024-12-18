@@ -8,7 +8,7 @@ Cool little clicker game about blocking ads
 
 ## Version
 
-- 1.1.0
+- 1.1.1
 
 ### Changes
 
