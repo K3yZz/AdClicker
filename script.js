@@ -130,25 +130,25 @@ function updatedisplay(display) {
         case 1:
           var rare_ad = Math.floor(Math.random() * rare_ad_chance) + 1;
           if (rare_ad == 1) { //there is a 0.83% chance to get this ad lol
-          Ad.src = "./Images/Capybara.png";
+          Ad.src = "./Custom/Images/Capybara.png";
           capybarabonus = Math.round(Stats.money / capybarabonus_percent);
           Stats.money += capybarabonus;
           }
           break;
         case 2:
-          Ad.src = "./Images/ad-1.png";
+          Ad.src = "./Custom/Images/ad-1.png";
           break;
         case 3:
-          Ad.src = "./Images/ad-2.png";
+          Ad.src = "./Custom/Images/ad-2.png";
           break;
         case 4:
-          Ad.src = "./Images/ad-3.png";
+          Ad.src = "./Custom/Images/ad-3.png";
           break;
         case 5:
-          Ad.src = "./Images/ad-4.png";
+          Ad.src = "./Custom/Images/ad-4.png";
           break;
         case 6:
-          Ad.src = "./Images/ad-5.png";
+          Ad.src = "./Custom/Images/ad-5.png";
           break;
       }
       

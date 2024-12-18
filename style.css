@@ -1,11 +1,11 @@
 :root {
-  --cursor-1: url("/Cursors/cursor.cur"), pointer;
-  --cursor-2: url("/Cursors/cursor-2.cur"), pointer;
+  --cursor-1: url("/Custom/cursor.cur"), pointer;
+  --cursor-2: url("/Custom/cursor-2.cur"), pointer;
 }
 
 @font-face {
   font-family: "MotleyForces";
-  src: url("./Fonts/MotleyForces.ttf") format("truetype");
+  src: url("/Custom/MotleyForces.ttf") format("truetype");
 }
 
 .hidden {
