@@ -11,7 +11,9 @@ var Stats = {
   multiplier: 1
 };
 
-
+var rare_ad_chance = 20;
+var capybarabonus_percent = 10;
+var ad_display_number = 6;
 
 //on load stuff for saving VVV
 setInterval(() => {
@@ -116,32 +118,33 @@ function updatedisplay(display) {
 
       //ad display
     case "ad":
-      var ad_display = Math.floor(Math.random() * 6) + 1; //change the # in "Math.random() * #" for how many possible ads
+      var ad_display = Math.floor(Math.random() * ad_display_number) + 1; //change the # in "Math.random() * #" for how many possible ads
       var Ad = document.getElementById("Ad");
       switch (ad_display) {
         case 1:
-          Ad.src = "./Images/ad-1.png";
-          break;
-        case 2:
-          Ad.src = "./Images/ad-2.png";
-          break;
-        case 3:
-          Ad.src = "./Images/ad-3.png";
-          break;
-        case 4:
-          Ad.src = "./Images/ad-4.png";
-          break;
-        case 5:
-          Ad.src = "./Images/ad-5.png";
-          break;
-        case 6:
-          var rare_ad = Math.floor(Math.random() * 20) + 1; //if you get this image then you beat the odds
-          if (rare_ad == 7) { //there is a 1.67% chance to get this ad lol
+          var rare_ad = Math.floor(Math.random() * rare_ad_chance) + 1;
+          if (rare_ad == 1) { //there is a 0.83% chance to get this ad lol
           Ad.src = "./Images/Capybara.png";
-          Stats.money += Math.round(Stats.money / 10);
+          capybarabonus = Math.round(Stats.money / capybarabonus_percent);
+          Stats.money += capybarabonus;
           }
           break;
-      } break;
+        case 2:
+          Ad.src = "./Images/ad-1.png";
+          break;
+        case 3:
+          Ad.src = "./Images/ad-2.png";
+          break;
+        case 4:
+          Ad.src = "./Images/ad-3.png";
+          break;
+        case 5:
+          Ad.src = "./Images/ad-4.png";
+          break;
+        case 6:
+          Ad.src = "./Images/ad-5.png";
+          break;
+      }
       
       //blocked display 
     case "blocked":
@@ -176,38 +179,49 @@ function updatedisplay(display) {
 
 var Popupwindowtext = [
   {ID: 1, 
-  Text1: "V1.0.0",
+  Text1: "V1.1.1",
   Text2: "Ad Block Clicker",
   Text3: "Welcome to my game its in beta rn so expect bugs, progress loss, etc. Close the this window with the X have fun!",
   Text4: "Decreased capybara chance; 1.67% -> 0.83%<br>Increased prestige multiplier; +0.5 - > +1<br>Capybara gives 10% of player money<br>Added settings"},
   {ID: 2, 
-    Text1: "V1.0.0",
+    Text1: "V1.1.1",
     Text2: "Settings",
     Text3: "Settings stuff",
     Text4: { label: "Reset", onclick: "resetprogress()" },
   },
+  {ID: 3,
+    Text1: "V1.1.1",
+    Text2: "Debug Hacks",
+    Text3: { label: "+$1,000,000", onclick: "debug(1)" },
+    Text4: { label: "Capabara 0.83% -> 100% chance, Capabara bonus 10% -> 110%", onclick: "debug(2)"},
+    Text5: { label: "Multiplier -> 20x", onclick: "debug(3)"}
+  }
 ]
 
-function popupwindowdisplay(selectedpopup) { //yes i took this from chatgpt shhhh it was to complex
+function popupwindowdisplay(selectedpopup) {
   document.getElementById("PopupWindow").classList.remove("hidden");
   const popupData = Popupwindowtext.find((popup) => popup.ID === selectedpopup);
+  //yes i took this from gpt shhh
   if (popupData) {
-    document.getElementById("PopupWindow-innertext-1").textContent = popupData.Text1;
-    document.getElementById("PopupWindow-innertext-2").textContent = popupData.Text2;
-    document.getElementById("PopupWindow-innertext-3").textContent = popupData.Text3;
-    
-    const text4Container = document.getElementById("PopupWindow-innertext-4");
+    const updateContent = (containerId, content) => {
+    const container = document.getElementById(containerId);
+    container.innerHTML = "";
 
-    if (typeof popupData.Text4 === "string") {
-      text4Container.innerHTML = popupData.Text4;
-    } else if (typeof popupData.Text4 === "object" && popupData.Text4.label && popupData.Text4.onclick) {
-      text4Container.innerHTML = ""; 
+    if (typeof content === "string") {
+      container.textContent = content;
+    } else if (content?.label && content?.onclick) {
       const button = document.createElement("button");
-      button.textContent = popupData.Text4.label;
-      button.setAttribute("onclick", popupData.Text4.onclick);
-      text4Container.appendChild(button);
+      button.textContent = content.label;
+      button.setAttribute("onclick", content.onclick);
+      container.appendChild(button);
     }
-  } 
+  };
+  updateContent("PopupWindow-innertext-1", popupData.Text1);
+  updateContent("PopupWindow-innertext-2", popupData.Text2);
+  updateContent("PopupWindow-innertext-3", popupData.Text3);
+  updateContent("PopupWindow-innertext-4", popupData.Text4);
+  updateContent("PopupWindow-innertext-5", popupData.Text5);
+  }
 } 
 
 function resetprogress() {
@@ -216,5 +230,36 @@ function resetprogress() {
       Stats.autoclicker = 0;
       Stats.power = 1;
       Stats.multiplier = 1;
+      rare_ad_chance = 20;
+      capybarabonus_percent = 10;
+      ad_display_number = 6;
+      updatedisplay("multiplier");
+      updatedisplay("money");
+      updatedisplay("power");
+      updatedisplay("autoclicker");
     } else alert("ok!");
+}
+
+function debug(debugtype) {
+  switch(debugtype) {
+    case 1:
+      Stats.money += 1000000;
+      break;
+    case 2:
+      rare_ad_chance = 1;
+      ad_display_number = 1;
+      capybarabonus_percent = 2.10;
+      break;
+    case 3:
+      Stats.multiplier = 20;
+      updatedisplay("multiplier");
   }
+}
+
+document.addEventListener("keydown", function(event) {
+  if(event.key === "`") {
+    if (prompt("Debug mode password:") === "yippiehax") {
+      popupwindowdisplay(3);
+    }
+  }
+});
