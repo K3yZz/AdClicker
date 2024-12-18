@@ -11,9 +11,13 @@ var Stats = {
   multiplier: 1
 };
 
+//ad stuff
 var rare_ad_chance = 20;
 var capybarabonus_percent = 10;
 var ad_display_number = 6;
+
+//new stuff?
+var imnotsureyetprobablysomethingwithrebirthidk = 0;
 
 //on load stuff for saving VVV
 setInterval(() => {
@@ -184,18 +188,18 @@ function updatedisplay(display) {
 
 var Popupwindowtext = [
   {ID: 1, 
-  Text1: "V1.1.2",
+  Text1: "V1.1.3",
   Text2: "Ad Block Clicker",
   Text3: "Bugs, progress loss, etc. are possible. Close the this window with the X. Current start to 1,000,000: 2 minutes",
-  Text4: "Changelog: Patched Multiplier bug, new upgrade, changed upgrade prices."},
+  Text4: "Changelog: Patched Multiplier bug, new upgrade, changed upgrade prices, fixed viewport problems (not fit to screen)"},
   {ID: 2, 
-    Text1: "V1.1.2",
+    Text1: "V1.1.3",
     Text2: "Settings",
     Text3: "Settings stuff",
     Text4: { label: "Reset", onclick: "resetprogress()" },
   },
   {ID: 3,
-    Text1: "V1.1.2",
+    Text1: "V1.1.3",
     Text2: "Debug Hacks",
     Text3: { label: "+$1,000,000", onclick: "debug(1)" },
     Text4: { label: "Capabara 0.83% -> 100% chance, Capabara bonus 10% -> 110%", onclick: "debug(2)"},
