@@ -209,6 +209,7 @@ var Popupwindowtext = [
 
 function popupwindowdisplay(selectedpopup) {
   document.getElementById("PopupWindow").classList.remove("hidden");
+
   const popupData = Popupwindowtext.find((popup) => popup.ID === selectedpopup);
   //yes i took this from gpt shhh
   if (popupData) {

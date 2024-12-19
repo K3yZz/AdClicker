@@ -1,6 +1,6 @@
 :root {
-  --cursor-1: url("/Custom/cursor.cur"), pointer;
-  --cursor-2: url("/Custom/cursor-2.cur"), pointer;
+  --cursor-1: url("./Custom/cursor.cur"), pointer;
+  --cursor-2: url("./Custom/cursor-2.cur"), pointer;
 }
 
 @font-face {
@@ -110,13 +110,21 @@ div {width: 100%; height: 100%}
 }
 
 #Settings {
-  position: absolute;
-  top: 550px;
+  position: relative;
+  z-index: 1;
+  overflow: visible;
 }
 
-#Settings-Button {
+#Settings-button {
+  position: absolute;
+  top: 525px;
   border: none;
   background-color: transparent;
+}
+
+#Settings-icon {
+  width: 100px;
+  height: 100px;
 }
 
 #Stats {
