@@ -22,16 +22,10 @@ window.onload = function () {
   popupwindowdisplay(1);
   autoclick();
 
-  //change if more upgrades VVV
-  upgradesettext(1);
-  upgradesettext(2);
-  upgradesettext(3);
-  upgradesettext(4);
-  upgradesettext(5);
-  upgradesettext(6);
-  upgradesettext(7);
-  upgradesettext(8);
-  upgradesettext(9);
+  //if more upgrades change the number in i < #
+  for(i = 1; i < 13; i++) {
+  upgradesettext(i);
+  }
 };
 
 document.addEventListener("keydown", function(event) {
@@ -58,14 +52,14 @@ var Stats = {
 
 var rare_ad_chance = 20;
 var capybarabonus_percent = 10;
-var ad_display_number = 6;
+var ad_display_number = 7;
 
 var Popupwindowtext = [
   {ID: 1,
   Text1: "V1.2.3",
   Text2: "Ad Block Clicker",
   Text3: "Bugs, progress loss, etc. are possible. Close the this window with the X. Current start to 1,000,000: 2 minutes",
-  Text4: "Changelog: Patched Multiplier bug, new upgrade, changed upgrade prices, fixed viewport problems (not fit to screen)"},
+  Text4: "Changelog: Moved changelog to readme"},
   {ID: 2, 
     Text1: "V1.2.3",
     Text2: "Settings",
@@ -87,13 +81,16 @@ var Upgrades = [
   //2. create another ID array below
   {ID: 1, Name: "Better Cursor", Price: 25, Effect: 1, Type: "power"},
   {ID: 2, Name: "Cheap Ad Blocker", Price: 50, Effect: 1, Type: "auto"},
-  {ID: 3, Name: "Advanced Clicking", Price: 125, Effect: 10, Type: "power"},
-  {ID: 4, Name: "Cheapish Ad Blocker", Price: 250, Effect: 10, Type: "auto"},
-  {ID: 5, Name: "Better Mouse", Price: 625, Effect: 75, Type: "power"},
-  {ID: 6, Name: "Pretty Good Blocker", Price: 1250, Effect: 50, Type: "auto"},
-  {ID: 7, Name: "Click+++", Price: 3125, Effect: 150, Type: "power"},
-  {ID: 8, Name: "Best Auto Blocker", Price: 6250, Effect: 150, Type: "auto"},
-  {ID: 9, Name: "Good(?) Virus", Price: 1000000, Effect: "???", Type: "prestige"}
+  {ID: 3, Name: "Advanced Clicking", Price: 145, Effect: 5, Type: "power"},
+  {ID: 4, Name: "Cheapish Ad Blocker", Price: 290, Effect: 5, Type: "auto"},
+  {ID: 5, Name: "Better Mouse", Price: 835, Effect: 30, Type: "power"},
+  {ID: 6, Name: "Pretty Good Blocker", Price: 1650, Effect: 30, Type: "auto"},
+  {ID: 7, Name: "Click+++", Price: 4750, Effect: 180, Type: "power"},
+  {ID: 8, Name: "Best Auto Blocker", Price: 9500, Effect: 180, Type: "auto"},
+  {ID: 9, Name: "Evolved Clicking", Price: 27500, Effect: 1035, Type: "power"},
+  {ID: 10, Name: "EVEN BETTER? Auto Blocker", Price: 54500, Effect: 1035, Type: "auto"},
+  {ID: 11, Name: "Godly Power", Price: 150000, Effect: 6000, Type: "power"},
+  {ID: 12, Name: "Good(?) Virus", Price: 2500000, Effect: "???", Type: "prestige"}
 ]
 
 // * ---------^^^-VARIBLES-^^^--------------
@@ -101,6 +98,7 @@ var Upgrades = [
 //===========================================
 
 // * ---------VVV-MONEY THINGS-VVV--------------
+
 function adclicked() {
   Stats.money += Stats.power * Stats.multiplier;
   updatedisplay("money");
@@ -223,6 +221,9 @@ function updatedisplay(display) {
           break;
         case 6:
           Ad.src = "./Custom/Images/ad-5.png";
+          break;
+        case 7:
+          Ad.src = ".Custom/Images/ad-6.png";
           break;
       }
       
