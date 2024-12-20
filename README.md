@@ -8,4 +8,4 @@ Cool little clicker game about blocking ads
 
 ## Version
 
-- 1.1.3
+- 1.2.3

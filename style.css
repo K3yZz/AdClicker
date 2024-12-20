@@ -1,3 +1,5 @@
+/* * ---------VVV-MUSC-VVV-------------- */
+
 :root {
   --cursor-1: url("./Custom/cursor.cur"), pointer;
   --cursor-2: url("./Custom/cursor-2.cur"), pointer;
@@ -32,8 +34,17 @@ html, button {
   cursor: var(--cursor-1);
 }
 
-html, body {width: 100vw; height: 100vh; overflow: hidden;}
-div {width: 100%; height: 100%}
+html, body {
+  width: 100vw; height: 100vh; overflow: hidden;}
+
+  div {
+  width: 100%; height: 100%}
+
+/* * ---------^^^-MUSC-^^^-------------- */
+
+/* =========================================== */
+
+/* * ---------VVV-POPUP WINDOW-VVV-------------- */
 
 #PopupWindow {
   overflow: hidden;
@@ -103,16 +114,30 @@ div {width: 100%; height: 100%}
   left: 10px;
 }
 
+/* * ---------^^^-POPUP WINDOW-^^^-------------- */
+
+/* =========================================== */
+
+/* * ---------VVV-TOP LEFT LOG-VVV-------------- */
+
 #TopLeftLog {
   overflow: hidden;
   position: absolute;
   font-size: 20px;
 }
 
+/* * ---------^^^-TOP LEFT LOG-^^^-------------- */
+
+/* =========================================== */
+
+/* * ---------VVV-SETTINGS-VVV-------------- */
+
 #Settings {
   position: relative;
   z-index: 1;
   overflow: visible;
+  width: 100px;
+  height: 100px;
 }
 
 #Settings-button {
@@ -127,11 +152,23 @@ div {width: 100%; height: 100%}
   height: 100px;
 }
 
+/* * ---------^^^-SETTINGS-^^^-------------- */
+
+/* =========================================== */
+
+/* * ---------VVV-STATS-VVV-------------- */
+
 #Stats {
   font-size: 20px;
   position: absolute;
   top: 200px;
 }
+
+/* * ---------^^^-STATS-^^^-------------- */
+
+/* =========================================== */
+
+/* * ---------VVV-CLICK AREA-VVV-------------- */
 
 #ClickBox {
   width: 500px;
@@ -157,6 +194,12 @@ div {width: 100%; height: 100%}
   z-index: 10;
   pointer-events: none;
 }
+
+/* * ---------^^^-CLICK AREA-^^^-------------- */
+
+/* =========================================== */
+
+/* * ---------VVV-UPGRADES-VVV-------------- */
 
 #UpgradesBox {
   position: absolute;
@@ -200,3 +243,5 @@ div {width: 100%; height: 100%}
 .UpgradeDiscription {
   grid-area: 4 / 2 / 5 / 3;
 }
+
+/* * ---------^^^-UPGRADES-^^^-------------- */

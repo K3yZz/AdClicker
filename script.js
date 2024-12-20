@@ -1,59 +1,106 @@
-//Warning:
-//my code suck
-//so gl
-
-
-//User Stats
-var Stats = {
-  money: 0,
-  power: 1,
-  autoclicker: 0,
-  multiplier: 1
-};
-
-//ad stuff
-var rare_ad_chance = 20;
-var capybarabonus_percent = 10;
-var ad_display_number = 6;
-
-//new stuff?
-var imnotsureyetprobablysomethingwithrebirthidk = 0;
-
-//on load stuff for saving VVV
+// * ---------VVV-ON LOAD ETC-VVV--------------
 setInterval(() => {
   localStorage.setItem("Stats", JSON.stringify(Stats));
 }, 1000);
 
 window.onload = function () {
+  
+  //Load stats
   const savedstats = JSON.parse(localStorage.getItem("Stats"));
   Stats.money = savedstats.money;
   Stats.power = savedstats.power;
   Stats.autoclicker = savedstats.autoclicker;
   Stats.multiplier = savedstats.multiplier;
+
+  //Display stats
   updatedisplay("money");
   updatedisplay("power");
   updatedisplay("autoclicker");
   updatedisplay("multiplier");
+
+  //Run functions
   popupwindowdisplay(1);
   autoclick();
+
+  //change if more upgrades VVV
+  upgradesettext(1);
+  upgradesettext(2);
+  upgradesettext(3);
+  upgradesettext(4);
+  upgradesettext(5);
+  upgradesettext(6);
+  upgradesettext(7);
+  upgradesettext(8);
+  upgradesettext(9);
 };
 
-//to add upgrades follow the instructions below
-//1. add another upgrade div in HTML
-//2. create another ID array below
-var Upgrades = [
-  {ID: 1, Name: "Upgrade1", Price: 25, Effect: 1, Type: "power"},
-  {ID: 2, Name: "Upgrade2", Price: 50, Effect: 1, Type: "auto"},
-  {ID: 3, Name: "Upgrade3", Price: 125, Effect: 10, Type: "power"},
-  {ID: 4, Name: "Upgrade4", Price: 250, Effect: 10, Type: "auto"},
-  {ID: 5, Name: "Upgrade5", Price: 625, Effect: 75, Type: "power"},
-  {ID: 6, Name: "Upgrade6", Price: 1250, Effect: 50, Type: "auto"},
-  {ID: 7, Name: "Upgrade7", Price: 3125, Effect: 150, Type: "power"},
-  {ID: 8, Name: "Upgrade8", Price: 6250, Effect: 150, Type: "auto"},
-  {ID: 9, Name: "Prestige1", Price: 1000000, Effect: 0, Type: "prestige"}
+document.addEventListener("keydown", function(event) {
+  if(event.key === "`") {
+    if (prompt("Debug mode password:") === "yippiehax") {
+      popupwindowdisplay(3);
+    }
+  }
+});
+
+// * ---------^^^-ON LOAD ETC-^^^--------------
+
+//===========================================
+
+// * ---------VVV-VARIBLES-VVV--------------
+
+var Stats = {
+  money: 0,
+  power: 1,
+  autoclicker: 0,
+  multiplier: 1,
+  currentversion: "1.2.3" //Version-Major.Minor.Patches
+};
+
+var rare_ad_chance = 20;
+var capybarabonus_percent = 10;
+var ad_display_number = 6;
+
+var Popupwindowtext = [
+  {ID: 1,
+  Text1: "V1.2.3",
+  Text2: "Ad Block Clicker",
+  Text3: "Bugs, progress loss, etc. are possible. Close the this window with the X. Current start to 1,000,000: 2 minutes",
+  Text4: "Changelog: Patched Multiplier bug, new upgrade, changed upgrade prices, fixed viewport problems (not fit to screen)"},
+  {ID: 2, 
+    Text1: "V1.2.3",
+    Text2: "Settings",
+    Text3: "Settings stuff",
+    Text4: { label: "Reset", onclick: "resetprogress()" },
+  },
+  {ID: 3,
+    Text1: "V1.2.3",
+    Text2: "Debug Hacks",
+    Text3: { label: "+$1,000,000", onclick: "debug(1)" },
+    Text4: { label: "Capabara 0.83% -> 100% chance, Capabara bonus 10% -> 110%", onclick: "debug(2)"},
+    Text5: { label: "Multiplier +20x", onclick: "debug(3)"}
+  }
 ]
 
-//Rewards from clicking ad
+var Upgrades = [
+  //to add upgrades follow the instructions below
+  //1. add another upgrade div in HTML
+  //2. create another ID array below
+  {ID: 1, Name: "Better Cursor", Price: 25, Effect: 1, Type: "power"},
+  {ID: 2, Name: "Cheap Ad Blocker", Price: 50, Effect: 1, Type: "auto"},
+  {ID: 3, Name: "Advanced Clicking", Price: 125, Effect: 10, Type: "power"},
+  {ID: 4, Name: "Cheapish Ad Blocker", Price: 250, Effect: 10, Type: "auto"},
+  {ID: 5, Name: "Better Mouse", Price: 625, Effect: 75, Type: "power"},
+  {ID: 6, Name: "Pretty Good Blocker", Price: 1250, Effect: 50, Type: "auto"},
+  {ID: 7, Name: "Click+++", Price: 3125, Effect: 150, Type: "power"},
+  {ID: 8, Name: "Best Auto Blocker", Price: 6250, Effect: 150, Type: "auto"},
+  {ID: 9, Name: "Good(?) Virus", Price: 1000000, Effect: "???", Type: "prestige"}
+]
+
+// * ---------^^^-VARIBLES-^^^--------------
+
+//===========================================
+
+// * ---------VVV-MONEY THINGS-VVV--------------
 function adclicked() {
   Stats.money += Stats.power * Stats.multiplier;
   updatedisplay("money");
@@ -68,7 +115,12 @@ function autoclick() {
   }, 1000);
 }
 
-//Upgrade purchases
+// * ---------^^^-MONEY THINGS-^^^--------------
+
+//===========================================
+
+// * ---------VVV-UPGRADE THINGS-VVV--------------
+
 function purchaseupgrade(upgradenumber) {
 
   const upgrade = Upgrades.find(u => u.ID === upgradenumber);
@@ -99,7 +151,29 @@ function purchaseupgrade(upgradenumber) {
   updatedisplay("multiplier");
 }
 
-//Change user stat displays
+// * ---------^^^-UPGRADE THINGS-^^^--------------
+
+//===========================================
+
+// * ---------VVV-DISPLAY THINGS-VVV--------------
+
+function upgradesettext(upgradenumber) {
+  const upgrade = Upgrades.find(u => u.ID === upgradenumber);
+  if (upgrade) {
+
+    const upgradeContainer = document.querySelector(`.Upgrade:nth-of-type(${upgradenumber})`);
+
+    if (upgradeContainer) {
+      upgradeContainer.querySelector(".UpgradeName").innerText = upgrade.Name;
+      upgradeContainer.querySelector(".UpgradePrice").innerText = `Price: ${upgrade.Price.toLocaleString()}`;
+      upgradeContainer.querySelector(".UpgradeDiscription").innerText = `+${upgrade.Effect}`;
+
+      const purchaseButton = upgradeContainer.querySelector(".UpgradePurchaseButton");
+      purchaseButton.setAttribute("onclick", `purchaseupgrade(${upgrade.ID})`);
+    }
+  }
+}
+
 function updatedisplay(display) {
   switch(display) {
       //money display
@@ -186,27 +260,6 @@ function updatedisplay(display) {
   }
 }
 
-var Popupwindowtext = [
-  {ID: 1, 
-  Text1: "V1.1.3",
-  Text2: "Ad Block Clicker",
-  Text3: "Bugs, progress loss, etc. are possible. Close the this window with the X. Current start to 1,000,000: 2 minutes",
-  Text4: "Changelog: Patched Multiplier bug, new upgrade, changed upgrade prices, fixed viewport problems (not fit to screen)"},
-  {ID: 2, 
-    Text1: "V1.1.3",
-    Text2: "Settings",
-    Text3: "Settings stuff",
-    Text4: { label: "Reset", onclick: "resetprogress()" },
-  },
-  {ID: 3,
-    Text1: "V1.1.3",
-    Text2: "Debug Hacks",
-    Text3: { label: "+$1,000,000", onclick: "debug(1)" },
-    Text4: { label: "Capabara 0.83% -> 100% chance, Capabara bonus 10% -> 110%", onclick: "debug(2)"},
-    Text5: { label: "Multiplier +20x", onclick: "debug(3)"}
-  }
-]
-
 function popupwindowdisplay(selectedpopup) {
   document.getElementById("PopupWindow").classList.remove("hidden");
 
@@ -233,6 +286,12 @@ function popupwindowdisplay(selectedpopup) {
   updateContent("PopupWindow-innertext-5", popupData.Text5);
   }
 } 
+
+// * ---------^^^-DISPLAY THINGS-^^^--------------
+
+//===========================================
+
+// * ---------VVV-DEBUG THINGS-VVV--------------
 
 function resetprogress() {
     if(confirm("Are you sure?")) {
@@ -266,10 +325,4 @@ function debug(debugtype) {
   }
 }
 
-document.addEventListener("keydown", function(event) {
-  if(event.key === "`") {
-    if (prompt("Debug mode password:") === "yippiehax") {
-      popupwindowdisplay(3);
-    }
-  }
-});
+// * ---------^^^-DEBUG THINGS-^^^--------------
